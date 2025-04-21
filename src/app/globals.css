@@ -1,26 +1,141 @@
+@import url("https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap");
+
 @import "tailwindcss";
 
+/* Font family uchun asosiy class */
+.readhat {
+  font-family: "Red Hat Display", sans-serif;
+}
+
+/* Light va Dark theme uchun umumiy CSS variables */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --font-family: "Red Hat Display", sans-serif;
+}
+/* Light Theme Variables */
+.light-theme {
+  --bg: #f9fafb;
+  --secondary-bg: #ffffff;
+  --text: #1f2937;
+  --text-secondary: #6b7280;
+  --accent: #0ea5e9;
+  --highlight: #f43f5e;
+  --border: #e5e7eb;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Dark Theme Variables */
+.dark-theme {
+  --bg: #3c4043;
+  --secondary-bg: #2c2f31;
+  --text: #e8eaed;
+  --text-secondary: #a8b0b8;
+  --accent: #00c9a7;
+  --highlight: #ff6b6b;
+  --border: #4f5458;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-family);
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+/* Global element styles */
+section {
+  background-color: var(--bg);
+}
+
+h1,
+h2,
+h3 {
+  color: var(--text);
+}
+
+p {
+  color: var(--text-secondary);
+}
+
+input,
+textarea {
+  background-color: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+}
+
+button {
+  background-color: var(--accent);
+  color: var(--text);
+  border-radius: 0.5rem;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: var(--highlight);
+  color: #fff;
+}
+
+a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--accent);
+}
+
+.card {
+  background-color: var(--secondary-bg);
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  padding: 1.5rem;
+}
+
+.popup {
+  background-color: var(--secondary-bg);
+  color: var(--text);
+  border: 2px solid var(--accent);
+  border-radius: 1rem;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  padding: 1.5rem;
+}
+
+.gradient-bg {
+  background-image: linear-gradient(to bottom right, var(--bg), var(--accent));
+}
+
+/* Custom animations */
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.pulse {
+  animation: pulse 2s infinite ease-in-out;
+}
+
+.hire-me-btn {
+  background-color: var(--highlight);
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  box-shadow: 0 10px 20px rgba(244, 63, 94, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hire-me-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px rgba(244, 63, 94, 0.4);
 }
