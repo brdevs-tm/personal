@@ -29,8 +29,8 @@ export default function Navbar() {
   };
 
   const handleToggleTheme = () => {
-    console.log("Toggle theme button clicked, current theme:", theme);
     toggleTheme();
+    window.location.reload();
   };
 
   return (
