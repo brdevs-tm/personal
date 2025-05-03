@@ -7,6 +7,8 @@ export default function useTheme() {
     const savedTheme = localStorage.getItem("theme") || "light";
     setTheme(savedTheme);
     document.documentElement.classList.add(`${savedTheme}-theme`);
+    // Silliq o‘tish uchun transition qo‘shish
+    document.documentElement.style.transition = "all 0.3s ease";
     console.log("Initial theme set:", savedTheme);
   }, []);
 

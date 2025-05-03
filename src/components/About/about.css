@@ -1,0 +1,175 @@
+.about-section {
+  position: relative;
+  padding: 5rem 1.5rem;
+  background: var(--background);
+  color: var(--text-primary);
+  overflow: hidden;
+}
+
+.about-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.about-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.about-avatar-container {
+  position: relative;
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid var(--accent);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-avatar-container:hover {
+  transform: rotate(10deg) scale(1.05);
+  box-shadow: 0 0 30px var(--highlight);
+}
+
+.about-avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.about-content {
+  flex: 1;
+  text-align: center;
+}
+
+.about-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--accent);
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.about-description {
+  font-size: 1.125rem;
+  line-height: 1.75;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.about-resume-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  background: var(--accent);
+  color: var(--text-primary);
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 0 10px var(--accent);
+  animation: pulse 2s infinite;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-resume-btn:hover {
+  background: var(--highlight);
+  box-shadow: 0 0 15px var(--highlight);
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 10px var(--accent);
+  }
+  50% {
+    box-shadow: 0 0 20px var(--accent);
+  }
+  100% {
+    box-shadow: 0 0 10px var(--accent);
+  }
+}
+
+/* Responsivlik */
+@media (min-width: 768px) {
+  .about-section {
+    padding: 6rem 2rem;
+  }
+
+  .about-container {
+    flex-direction: row;
+    align-items: center;
+    gap: 3rem;
+  }
+
+  .about-avatar-container {
+    width: 15rem;
+    height: 15rem;
+  }
+
+  .about-content {
+    text-align: left;
+  }
+
+  .about-title {
+    font-size: 3rem;
+  }
+
+  .about-description {
+    font-size: 1.25rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .about-avatar-container {
+    width: 18rem;
+    height: 18rem;
+  }
+
+  .about-title {
+    font-size: 3.5rem;
+  }
+
+  .about-description {
+    font-size: 1.5rem;
+  }
+
+  .about-resume-btn {
+    padding: 1rem 2rem;
+    font-size: 1.125rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .about-section {
+    padding: 3rem 1rem;
+  }
+
+  .about-avatar-container {
+    width: 8rem;
+    height: 8rem;
+  }
+
+  .about-title {
+    font-size: 2rem;
+  }
+
+  .about-description {
+    font-size: 1rem;
+  }
+
+  .about-resume-btn {
+    padding: 0.5rem 1.25rem;
+    font-size: 0.875rem;
+  }
+}

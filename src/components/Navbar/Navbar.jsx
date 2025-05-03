@@ -42,7 +42,7 @@ export default function Navbar() {
 
     const resizeCanvas = () => {
       canvas.width = window.innerWidth;
-      canvas.height = 80; // Navbar height
+      canvas.height = window.innerWidth > 768 ? 80 : 60;
     };
     resizeCanvas();
     window.addEventListener("resize", resizeCanvas);
@@ -82,9 +82,13 @@ export default function Navbar() {
       });
       animationFrameId = requestAnimationFrame(animate);
     };
-    animate();
+
+    if (window.innerWidth > 768) {
+      animate();
+    }
 
     const handleMouseMove = (e) => {
+      if (window.innerWidth <= 768) return;
       const rect = canvas.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
@@ -114,7 +118,7 @@ export default function Navbar() {
           HamidovDev
         </motion.a>
 
-        <div className="navbar-links hidden md:flex">
+        <div className="navbar-links">
           {navItems.map((item) => (
             <a
               key={item.name}
@@ -145,7 +149,7 @@ export default function Navbar() {
         </div>
 
         <button
-          className="navbar-mobile-toggle md:hidden"
+          className="navbar-mobile-toggle"
           onClick={() => setIsOpen(!isOpen)}
         >
           {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -154,37 +158,40 @@ export default function Navbar() {
 
       {isOpen && (
         <motion.div
-          className="navbar-mobile-menu md:hidden"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
+          className="navbar-mobile-menu"
+          initial={{ x: "100%" }}
+          animate={{ x: 0 }}
+          exit={{ x: "100%" }}
+          transition={{ type: "spring", stiffness: 100 }}
         >
-          {navItems.map((item) => (
-            <a
-              key={item.name}
-              href={item.href}
-              onClick={(e) => handleNavClick(e, item.href)}
-              className="navbar-mobile-link"
+          <div className="navbar-mobile-content">
+            {navItems.map((item) => (
+              <a
+                key={item.name}
+                href={item.href}
+                onClick={(e) => handleNavClick(e, item.href)}
+                className="navbar-mobile-link"
+              >
+                {item.name}
+              </a>
+            ))}
+            <motion.a
+              href="#contact"
+              onClick={(e) => handleNavClick(e, "#contact")}
+              className="navbar-mobile-hire-btn"
+              whileHover={{ scale: 1.05 }}
             >
-              {item.name}
-            </a>
-          ))}
-          <motion.a
-            href="#contact"
-            onClick={(e) => handleNavClick(e, "#contact")}
-            className="navbar-mobile-hire-btn"
-            whileHover={{ scale: 1.05 }}
-          >
-            <User size={16} /> Hire Me
-          </motion.a>
-          <motion.button
-            onClick={handleToggleTheme}
-            className="navbar-mobile-theme-toggle"
-            whileHover={{ scale: 1.05 }}
-          >
-            {theme === "light" ? <Moon size={20} /> : <Sun size={20} />}
-            {theme === "light" ? "Dark Mode" : "Light Mode"}
-          </motion.button>
+              <User size={16} /> Hire Me
+            </motion.a>
+            <motion.button
+              onClick={handleToggleTheme}
+              className="navbar-mobile-theme-toggle"
+              whileHover={{ scale: 1.05 }}
+            >
+              {theme === "light" ? <Moon size={20} /> : <Sun size={20} />}
+              {theme === "light" ? "Dark Mode" : "Light Mode"}
+            </motion.button>
+          </div>
         </motion.div>
       )}
     </nav>

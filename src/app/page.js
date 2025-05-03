@@ -6,7 +6,7 @@ import About from "@/components/About/About";
 import Skills from "@/components/Skills/Skills";
 import Projects from "@/components/Projects/Projects";
 import Testimonial from "@/components/Testimonial/Testimonial";
-import Blog from "@/components/Blog/Blog";
+import Blog from "@/components/Blog/Awards";
 import Contact from "@/components/Contact/Contact";
 import Footer from "@/components/Footer/Footer";
 import useTheme from "@/hooks/useTheme";

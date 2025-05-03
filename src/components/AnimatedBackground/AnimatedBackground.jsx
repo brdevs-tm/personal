@@ -1,7 +1,7 @@
 "use client";
 
-import useTheme from "@/hooks/useTheme";
 import { useEffect, useRef } from "react";
+import useTheme from "@/hooks/useTheme";
 
 export default function AnimatedBackground() {
   const canvasRef = useRef(null);
