@@ -2,6 +2,8 @@
 
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import AnimatedBackground from "../AnimatedBackground/AnimatedBackground";
+import "./hero.css";
 
 export default function Hero() {
   const textVariants = {
@@ -25,8 +27,9 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center justify-center gradient-bg py-16 px-4"
+      className="min-h-screen flex items-center justify-center py-16 px-4 hero-section"
     >
+      <AnimatedBackground />
       <div className="max-w-4xl mx-auto text-center">
         <motion.h1
           variants={textVariants}

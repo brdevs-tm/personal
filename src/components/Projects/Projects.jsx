@@ -3,6 +3,10 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { ExternalLink, Github } from "lucide-react";
+import Tilt from "react-parallax-tilt";
+import "./projects.css";
+import useTheme from "@/hooks/useTheme";
+import WaveBackground from "../WaveBackground/WaveBackground";
 
 export default function Projects() {
   const projects = [
@@ -44,59 +48,76 @@ export default function Projects() {
   };
 
   return (
-    <section id="projects" className="py-16 px-4">
+    <section id="projects" className="py-16 px-4 projects-section">
+      <WaveBackground />
       <div className="max-w-5xl mx-auto">
         <h2 className="text-3xl font-bold text-center mb-12">My Projects</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
-            <motion.div
+            <Tilt
               key={index}
-              variants={cardVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="card hover:shadow-2xl transition-shadow"
+              tiltMaxAngleX={15}
+              tiltMaxAngleY={15}
+              glareEnable={true}
+              glareMaxOpacity={0.3}
+              glareColor={useTheme === "dark" ? "#00C9A7" : "#0EA5E9"}
+              glarePosition="all"
             >
-              <Image
-                src={project.image}
-                alt={project.title}
-                width={400}
-                height={240}
-                className="w-full h-48 object-cover rounded-t-lg"
-              />
-              <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-                <p className="mb-4">{project.description}</p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tech.map((tech, i) => (
-                    <span
-                      key={i}
-                      className="px-2 py-1 text-sm rounded-full bg-[var(--border)]"
-                    >
-                      {tech}
-                    </span>
-                  ))}
+              <motion.div
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                className="holo-card"
+                onMouseMove={(e) => {
+                  const card = e.currentTarget;
+                  const rect = card.getBoundingClientRect();
+                  const x = e.clientX - rect.left;
+                  const y = e.clientY - rect.top;
+                  card.style.setProperty("--mouse-x", `${x}px`);
+                  card.style.setProperty("--mouse-y", `${y}px`);
+                }}
+              >
+                <div className="card-content">
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    width={320}
+                    height={180}
+                    className="card-image"
+                  />
+                  <div className="card-body">
+                    <h3 className="card-title">{project.title}</h3>
+                    <p className="card-description">{project.description}</p>
+                    <div className="card-tech">
+                      {project.tech.map((tech, i) => (
+                        <span key={i} className="tech-tag">
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                    <div className="card-links">
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="card-link"
+                      >
+                        <Github size={20} /> GitHub
+                      </a>
+                      <a
+                        href={project.demo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="card-link"
+                      >
+                        <ExternalLink size={20} /> Demo
+                      </a>
+                    </div>
+                  </div>
                 </div>
-                <div className="flex gap-4">
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 hover:text-[var(--accent)]"
-                  >
-                    <Github size={20} /> GitHub
-                  </a>
-                  <a
-                    href={project.demo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 hover:text-[var(--accent)]"
-                  >
-                    <ExternalLink size={20} /> Demo
-                  </a>
-                </div>
-              </div>
-            </motion.div>
+              </motion.div>
+            </Tilt>
           ))}
         </div>
       </div>

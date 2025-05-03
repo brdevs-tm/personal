@@ -1,0 +1,13 @@
+.hero-section {
+  position: relative;
+  background: var(--background);
+  color: var(--text-primary);
+}
+
+.hero-section h1 {
+  color: var(--text-primary);
+}
+
+.hero-section p {
+  color: var(--text-secondary);
+}
