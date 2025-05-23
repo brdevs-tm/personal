@@ -28,13 +28,13 @@ export default function Projects() {
       demo: "https://task-manager-demo.vercel.app",
     },
     {
-      title: "Portfolio Website",
+      title: "IELTS Speaking Practice",
       description:
-        "Shaxsiy portfolio sayti, kreativ dizayn va animatsiyalar bilan.",
-      image: "/images/project3.jpg",
-      tech: ["Next.js", "TailwindCSS", "Framer Motion"],
-      github: "https://github.com/brdevs-tm/portfolio",
-      demo: "https://hamidov-portfolio.vercel.app",
+        "A web application that generates random questions for IELTS Speaking sections. Built with a minimalist design and powered by the Ant Design UI framework.",
+      image: "/images/project3.png",
+      tech: ["Next.js", "CSS", "Ant Design", "REST API"],
+      github: "https://github.com/brdevs-tm/speaking-new",
+      demo: "https://speakready.netlify.app",
     },
   ];
 
